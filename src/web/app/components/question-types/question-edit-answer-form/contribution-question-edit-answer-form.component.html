@@ -9,9 +9,11 @@
     }">
       <span *ngIf='responseDetails.answer === CONTRIBUTION_POINT_NOT_SURE && questionDetails.isNotSureAllowed; else elseBlock'>Not Sure</span>
       <ng-template #elseBlock>
-        <span>Equal Share
-          <span *ngIf='responseDetails.answer > 100'> +{{ responseDetails.answer - 100 }}%</span>
-          <span *ngIf='responseDetails.answer < 100 && responseDetails.answer !== CONTRIBUTION_POINT_NOT_SUBMITTED'> -{{ 100 - responseDetails.answer }}%</span>
+        <span>
+          <span *ngIf='responseDetails.answer === 100'>Equal Share</span>
+          <span *ngIf='responseDetails.answer > 100'>Equal Share +{{ responseDetails.answer - 100 }}%</span>
+          <span *ngIf='responseDetails.answer < 100 && responseDetails.answer !== CONTRIBUTION_POINT_NOT_SUBMITTED'>Equal Share -{{ 100 - responseDetails.answer }}%</span>
+          <span *ngIf='responseDetails.answer === CONTRIBUTION_POINT_NOT_SUBMITTED'>Not Rated</span>
         </span>
       </ng-template>
     </label>
